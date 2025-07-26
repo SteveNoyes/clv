@@ -3,9 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS -->
+   <link rel="stylesheet" href="./assets/css/reset.css">
+   <link rel="stylesheet" href="./assets/css/main.css">
   <title>clv</title>
 </head>
 <body>
+
+  <div class="builder-container">
+
+    <aside id="component-panel">
+      <h3>Components</h3>
+      <div class="component" draggable="true" data-type="text">Text Block</div>
+      <div class="component" draggable="true" data-type="image">Image</div>
+      <div class="component" draggable="true" data-type="button">Button</div>
+    </aside>
+
+    <main id="canvas" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+      <h3>Email Canvas</h3>
+    </main>
+
+    <section id="property-editor">
+      <h3>Properties</h3>
+      <div id="properties"></div>
+    </section>
+
+  </div>
+
+  <button id="export-btn">Export HTML</button>
+  <textarea id="output" readonly></textarea>
+
+  <!-- Scripts -->
+
+  <script src="./assets/js/components.js"></script>
+
+  <script src="./assets/js/builder.js"></script>
+
+  <script src="./assets/js/renderer.js"></script>
   
 </body>
 </html>

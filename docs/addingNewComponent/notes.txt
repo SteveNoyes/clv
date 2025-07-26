@@ -1,0 +1,97 @@
+Overview of Adding New Components
+
+Define the component template in components.js
+
+Render the component in HTML via renderer.js
+
+Add drag option to the sidebar UI (index.html)
+
+Support editing in the properties panel (builder.js)
+
+
+
+
+1. Add the Template to components.js
+Add a new entry to the componentTemplates object. Here's an example for a divider:
+
+divider: {
+  type: "divider",
+  styles: {
+    padding: "20px 0",
+    borderTop: "1px solid #ccc"
+  }
+}
+
+2. Add Rendering Logic in renderer.js
+Extend the renderComponent function to handle the new type:
+
+case "divider":
+  return `<table width="100%"><tr><td style="${style}">&nbsp;</td></tr></table>`;
+
+3. Add to Sidebar UI in index.html
+Inside the #component-panel, add a new draggable div:
+
+<div class="component" draggable="true" data-type="divider">Divider</div>
+
+Or dynamically render it in builder.js with a function like:
+
+function renderSidebar() {
+  const panel = document.getElementById("component-panel");
+  panel.innerHTML = "<h3>Components</h3>";
+  Object.keys(componentTemplates).forEach(type => {
+    const el = document.createElement("div");
+    el.className = "component";
+    el.draggable = true;
+    el.dataset.type = type;
+    el.textContent = type[0].toUpperCase() + type.slice(1);
+    el.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("componentType", type);
+    });
+    panel.appendChild(el);
+  });
+}
+Call renderSidebar() on page load.
+
+4. (Optional) Add Editable Fields in builder.js
+If your new component has editable fields (like a heading or video block), update the editProperties() function:
+
+if (component.type === "divider") {
+  const paddingInput = document.createElement("input");
+  paddingInput.value = component.styles.padding;
+  paddingInput.oninput = e => {
+    component.styles.padding = e.target.value;
+    updateCanvas();
+  };
+  container.appendChild(paddingInput);
+}
+
+Live Component Addition
+You could even allow users to add custom JSON-based components through a form, or upload them from external .json files.
+
+New “Heading” Component
+components.js
+heading: {
+  type: "heading",
+  text: "Your Headline",
+  styles: {
+    fontSize: "24px",
+    color: "#222",
+    fontWeight: "bold",
+    padding: "10px"
+  }
+}
+
+renderer.js
+case "heading":
+  return `<table width="100%"><tr><td style="${style}">${component.text}</td></tr></table>`;
+
+builder.js (property editor)
+if (component.type === "heading") {
+  const input = document.createElement("input");
+  input.value = component.text;
+  input.oninput = e => {
+    component.text = e.target.value;
+    updateCanvas();
+  };
+  container.appendChild(input);
+}

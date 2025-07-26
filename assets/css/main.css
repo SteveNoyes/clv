@@ -1,0 +1,82 @@
+:root {
+/* Main Colors */
+--main-blue: #11243b;
+--mid-blue: #40506a;
+--lite-blue: #71b0ff;
+--powder-blue: #def2ff;
+--tertiary-yellow: #f9f871;
+--lite-brown: #887456;
+--dull-gold: #dba11c;
+/* Colors From Logo */
+  --logo-dark-blue: #11243b;
+  --logo-lite-blue: #71b0ff;
+}
+
+
+
+
+
+
+/* styles.css */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.builder-container {
+  display: flex;
+  height: 90vh;
+}
+
+#component-panel, #property-editor {
+  width: 20%;
+  padding: 1rem;
+  background: #f7f7f7;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+#canvas {
+  flex-grow: 1;
+  padding: 1rem;
+  background: #fff;
+  overflow-y: auto;
+}
+
+.component {
+  padding: 0.5rem;
+  background: #e2e2e2;
+  margin-bottom: 0.5rem;
+  cursor: grab;
+  border-radius: 4px;
+}
+
+.component-wrapper {
+  border: 1px dashed #ccc;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+textarea, input {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+#export-btn {
+  margin: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 16px;
+}
+
+#output {
+  width: 95%;
+  height: 200px;
+  margin: 1rem;
+  padding: 1rem;
+  font-family: monospace;
+}

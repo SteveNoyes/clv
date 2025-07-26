@@ -1,0 +1,9 @@
+{
+  "type": "text",
+  "content": "Hello World",
+  "styles": {
+    "fontSize": "16px",
+    "color": "#333",
+    "padding": "10px"
+  }
+}
